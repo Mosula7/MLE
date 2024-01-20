@@ -1,3 +1,3 @@
-from data_process import main
+from data_process.split_iris import main
 
 main()

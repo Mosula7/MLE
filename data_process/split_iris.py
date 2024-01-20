@@ -1,12 +1,16 @@
 import pandas as pd
 import os
+import sys
 
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_iris
 
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(ROOT_DIR))
+DATA_DIR = os.path.abspath(os.path.join(ROOT_DIR, '../data'))
 
-if not os.path.exists('data'):
-    os.mkdir('data')
+if not os.path.exists(DATA_DIR):
+    os.makedirs(DATA_DIR)
 
 
 def split_data(df: pd.DataFrame, target: str, test_size: float, 
@@ -47,14 +51,13 @@ def main():
     X_train, y_train, X_val, y_val, X_test, y_test = split_data(df, target = target_name, test_size=test_val_size, 
                                                                 random_state=random_state)
 
-    X_train.to_csv('data/X_train.csv', index=False)
-    X_val.to_csv('data/X_val.csv', index=False)
-    X_test.to_csv('data/X_test.csv', index=False)
+    X_train.to_csv(os.path.join(DATA_DIR, 'X_train.csv'), index=False)
+    X_val.to_csv(os.path.join(DATA_DIR, 'X_val.csv'), index=False)
+    X_test.to_csv(os.path.join(DATA_DIR, 'X_test.csv'), index=False)
 
-    y_train.to_csv('data/y_train.csv', index=False)
-    y_val.to_csv('data/y_val.csv', index=False)
-    y_test.to_csv('data/y_test.csv', index=False)
-
+    y_train.to_csv(os.path.join(DATA_DIR, 'y_train.csv'), index=False)
+    y_val.to_csv(os.path.join(DATA_DIR, 'y_val.csv'), index=False)
+    y_test.to_csv(os.path.join(DATA_DIR, 'y_test.csv'), index=False)
 
 if __name__ == '__main__':
     main()
