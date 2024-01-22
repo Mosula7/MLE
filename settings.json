@@ -1,15 +1,22 @@
 {
     "general": {
-        
         "data_dir": "data",
-        "models_dir": "models"
+        "models_dir": "models",
+        "model_name": "torch_model" 
     },
     "data_process": {
         "random_state": 42,
         "test_size": 0.2
     },
+    "training":{
+        "epochs": 100,
+        "learning_rate": 0.01,
+        "n_units_1": 64,
+        "n_units_2": 16
+    },
+
     "inference": {
-        "inp_table_name": "xor_inference_data.csv",
-        "model_name": "prod_model.pickle" 
+        "X": "X_test.csv",
+        "y": "y_test.csv"
     }
 }
