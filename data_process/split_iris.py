@@ -1,43 +1,22 @@
-import pandas as pd
 import os
 import sys
+import json 
+import logging
+
+import pandas as pd
 
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_iris
 
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.dirname(ROOT_DIR))
-DATA_DIR = os.path.abspath(os.path.join(ROOT_DIR, '../data'))
-
-if not os.path.exists(DATA_DIR):
-    os.makedirs(DATA_DIR)
-
-
-def split_data(df: pd.DataFrame, target: str, test_size: float, 
-               val_size: float=None, random_state:int = 0):
-    """
-    returns (X_train, y_train, X_val, y_val, X_test, y_test)
-    """
-    if not val_size:
-        val_size = test_size / (1 - test_size)
-
-    train_val, test = train_test_split(df, test_size=test_size, stratify=df[target], random_state=random_state)
-    train, val = train_test_split(train_val, test_size=val_size, stratify=train_val[target], random_state=random_state)
-
-    X_train = train[train.columns.drop(target)]
-    X_val = val[val.columns.drop(target)]
-    X_test = test[test.columns.drop(target)]
-
-    y_train = train[target]
-    y_val = val[target]
-    y_test = test[target]
-    
-    return X_train, y_train, X_val, y_val, X_test, y_test
-
 
 def main():
-    test_val_size = 0.1
-    random_state = 42
+    CONF_FILE = os.getenv('CONF_PATH')
+
+    with open(CONF_FILE, "r") as file:
+        conf = json.load(file)
+
+    test_size = conf['data_process']['test_size']
+    random_state = conf['data_process']['random_state']
 
     target_name = 'target'
     iris = load_iris()
@@ -48,16 +27,28 @@ def main():
     # Add the target variable to the dataframe
     df[target_name] = iris.target
 
-    X_train, y_train, X_val, y_val, X_test, y_test = split_data(df, target = target_name, test_size=test_val_size, 
-                                                                random_state=random_state)
+    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+    sys.path.append(os.path.dirname(ROOT_DIR))
+    DATA_DIR = os.path.abspath(os.path.join(ROOT_DIR, '../data'))
 
+    if not os.path.exists(DATA_DIR):
+        os.makedirs(DATA_DIR)
+
+
+    train, test = train_test_split(df, stratify=df[target_name], test_size=test_size, random_state=random_state)
+
+    X_train = train[train.columns.drop(target_name)]
+    X_test = test[test.columns.drop(target_name)]
+
+    y_train = train[target_name]
+    y_test = test[target_name]
+    
     X_train.to_csv(os.path.join(DATA_DIR, 'X_train.csv'), index=False)
-    X_val.to_csv(os.path.join(DATA_DIR, 'X_val.csv'), index=False)
     X_test.to_csv(os.path.join(DATA_DIR, 'X_test.csv'), index=False)
-
+    
     y_train.to_csv(os.path.join(DATA_DIR, 'y_train.csv'), index=False)
-    y_val.to_csv(os.path.join(DATA_DIR, 'y_val.csv'), index=False)
     y_test.to_csv(os.path.join(DATA_DIR, 'y_test.csv'), index=False)
+
 
 if __name__ == '__main__':
     main()
