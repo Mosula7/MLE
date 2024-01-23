@@ -28,11 +28,15 @@ def create_model(n_units_1, n_units_2, learning_rate):
 
 
 def get_data():
-    X = pd.read_csv(os.path.join('data', 'X_train.csv'))
-    X = torch.tensor(X.values).float()
+    try:
+        X = pd.read_csv(os.path.join('data', 'X_train.csv'))
+        X = torch.tensor(X.values).float()
 
-    y = pd.read_csv(os.path.join('data', 'y_train.csv'))
-    y = torch.tensor(y.values).flatten()
+        y = pd.read_csv(os.path.join('data', 'y_train.csv'))
+        y = torch.tensor(y.values).flatten()
+    except:
+        raise FileNotFoundError('try creating data files first')
+
     
     return X, y
 
