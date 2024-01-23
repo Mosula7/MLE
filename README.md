@@ -34,8 +34,9 @@ docker build -f ./training/Dockerfile --build-arg settings_name=settings.json -t
 ```
 * You can move trained model from container into a local machine by
 ```
-docker cp <container_id>:/app/models/<model_name>.pickle ./models
+docker cp <container_id>:/app/models/<model_name>.pt ./models
 ```
+** NOTE **: model extension should be .pt
 This script gets the data from the data folder and trains a pytorch model, then it creates a models folder and saves the model in this folder, you can specify the model name in settings. You will need the model name for the inference part, so it is important. Then it logs f1 and accuracy score on the test set. The model has two hidden layers, and you can choose how many units are going to be in them by specifing them in n_units_1 and n_units_2 in the settings.json, you can also adjust the learning rate and number of epochs here. 
 
 
