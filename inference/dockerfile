@@ -16,7 +16,6 @@ COPY models/${model_name} /app/models/${model_name}.pt
 COPY inference /app/inference
 
 # Copy usefull scripts and configs
-COPY utils.py /app
 COPY ${CONF_PATH} /app
 
 # Install any necessary packages listed in requirements.txt
