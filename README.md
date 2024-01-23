@@ -28,7 +28,7 @@ You can run this script in two ways:
 ```
 python training/train.py
 ```
-* You can also build a docker image with the following command
+* You can also build a docker image with the following command and run the script on a container
 ```
 docker build -f ./training/Dockerfile --build-arg settings_name=settings.json -t training_image .
 ```
@@ -47,7 +47,7 @@ You can run this script in two ways:
 ```
 python inference/run.py
 ```
-* You can also build a docker image with the following command
+* You can also build a docker image with the following command and run the script on a container
 ```
 docker build -f ./inference/Dockerfile --build-arg model_name=<model_name>.pt --build-arg settings_name=settings.json -t inference_image .
 ```
