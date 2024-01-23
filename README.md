@@ -1,6 +1,6 @@
 # MLE project for IRIS Dataset
 
-In the directory includes the following files:
+The directory includes the following files:
 * **IMPORTANT** create .env file. In this file you should have `CONF_PATH=settings.json`
   
 * .gitignore - I'm not uploading model files, inference/prediction csvs, pycache and notebooks used for testing. (I did incude a data folder as specifed in the homework)
