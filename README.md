@@ -51,7 +51,7 @@ python inference/run.py
 ```
 docker build -f ./inference/Dockerfile --build-arg model_name=<model_name>.pt --build-arg settings_name=settings.json -t inference_image .
 ```
-**NOTE**: the extention of the model should also be specifed and it should have .pt extension
+**NOTE**: the extention of the model needs to be .pt and it needs to be specified
 
 This script gets the inference data specified in settings, logs models f1 and accuracy score on this data and then saves the predictions in the results folder as a csv. Note: the predictions aren't probabilites they are classes (already "Argmaxed")
 
