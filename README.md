@@ -36,7 +36,7 @@ docker build -f ./training/Dockerfile --build-arg settings_name=settings.json -t
 ```
 docker cp <container_id>:/app/models/<model_name>.pt ./models
 ```
-** NOTE **: model extension should be .pt
+**NOTE**: model extension should be .pt
 This script gets the data from the data folder and trains a pytorch model, then it creates a models folder and saves the model in this folder, you can specify the model name in settings. You will need the model name for the inference part, so it is important. Then it logs f1 and accuracy score on the test set. The model has two hidden layers, and you can choose how many units are going to be in them by specifing them in n_units_1 and n_units_2 in the settings.json, you can also adjust the learning rate and number of epochs here. 
 
 
@@ -50,7 +50,7 @@ python inference/run.py
 ```
 docker build -f ./inference/Dockerfile --build-arg model_name=<model_name>.pt --build-arg settings_name=settings.json -t inference_image .
 ```
-** NOTE **: the extention of the model should also be specifed and it should have .pt extension
+**NOTE**: the extention of the model should also be specifed and it should have .pt extension
 
 This script gets the inference data specified in settings, logs models f1 and accuracy score on this data and then saves the predictions in the results folder as a csv. Note: the predictions aren't probabilites they are classes (already "Argmaxed")
 
