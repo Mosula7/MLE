@@ -12,6 +12,8 @@ The project consists of three main parts:
 * Model training
 * Inference
 
+## Data
+This folder includes train test split IRIS data. I'm using test dataset for inferance and model evaluation after training, because it is already extremly small. You can add extra inference X, y data in this folder, update names of datasets in the settings.json file ("X" and "y" in the "inference" part) and the inference would be ran on that dataset
 ## Data Processing
 To run the script in the terminal locally, if you want to get different data folders, than what's already uploaded
 ```
@@ -52,10 +54,3 @@ docker build -f ./inference/Dockerfile --build-arg model_name=<model_name>.pt --
 **NOTE**: the extention of the model needs to be .pt and it needs to be specified
 
 This script gets the inference data specified in settings, logs models f1 and accuracy score on this data and then saves the predictions in the results folder as a csv. Note: the predictions aren't probabilites they are classes (already "Argmaxed")
-
-
-## Data
-This folder includes train test split data. I'm using test dataset for inferance and model evaluation after training, because the dataset is already extremly small. You can add extra inference X, y data in this folder, update names of datasets in the settings.json file ("X" and "y" in the inference part) and the inference would be ran on that dataset
-
-
-
