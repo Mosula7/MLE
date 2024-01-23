@@ -1,6 +1,6 @@
 FROM python:3.10
 
-ARG model_name=torch_model.pt
+ARG model_name=${model_name}
 ARG settings_name=settings.json
 ENV CONF_PATH=${settings_name}
 
@@ -10,7 +10,7 @@ WORKDIR /app
 COPY data/ /app/data
 
 # Copy models folder to Docker
-COPY models/${model_name} /app/models/${model_name}.pt
+COPY models/${model_name} /app/models/${model_name}
 
 # Copy the code itself
 COPY inference /app/inference
