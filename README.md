@@ -26,7 +26,7 @@ This script gets the data from the data folder and trains a pytorch model, then 
 ## Inference
 This script can be ran locally by "python inference/run.py" or you can also build a docker image with the following command: TODO. 
 
-This script gets the inference data specified in settings, logs models f1 and accuracy score on this data and then saves the predictions in the results folder
+This script gets the inference data specified in settings, logs models f1 and accuracy score on this data and then saves the predictions in the results folder as a csv. Note: the predictions aren't probabilites they are classes (already "Argmaxed")
 
 
 
