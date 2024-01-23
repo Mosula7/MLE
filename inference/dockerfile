@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM python:3.10
 
 ARG model_name=torch_model.pt
 ARG settings_name=settings.json
