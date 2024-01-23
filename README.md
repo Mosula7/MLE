@@ -1,18 +1,16 @@
 # MLE project for IRIS Dataset
-The project consists of three main parts: 
-* Data processing
-* Model training
-* Inference
 
-In the repository you will also find some other files:
+In the directory includes the following files:
 * **IMPORTANT** create .env file. In this file you should have `CONF_PATH=settings.json`
   
 * .gitignore - I'm not uploading model files, inference/prediction csvs, pycache and notebooks used for testing. (I did incude a data folder as specifed in the homework)
 * requirements.txt - all the dependencies needed
 * settings.json - almsot all the values that would need to be hard coded, for example: test set ratio, random state, learning rate, names of inferance datasets, etc.
-
-## Data
-This folder includes train test split data. I'm using test dataset for inferance and model evaluation after training, because the dataset is already extremly small. You can add extra inference X, y data in this folder, update names of datasets in the settings.json file ("X" and "y" in the inference part) and the inference would be ran on that dataset
+  
+The project consists of three main parts: 
+* Data processing
+* Model training
+* Inference
 
 ## Data Processing
 To run the script in the terminal locally, if you want to get different data folders, than what's already uploaded
@@ -54,6 +52,10 @@ docker build -f ./inference/Dockerfile --build-arg model_name=<model_name>.pt --
 **NOTE**: the extention of the model needs to be .pt and it needs to be specified
 
 This script gets the inference data specified in settings, logs models f1 and accuracy score on this data and then saves the predictions in the results folder as a csv. Note: the predictions aren't probabilites they are classes (already "Argmaxed")
+
+
+## Data
+This folder includes train test split data. I'm using test dataset for inferance and model evaluation after training, because the dataset is already extremly small. You can add extra inference X, y data in this folder, update names of datasets in the settings.json file ("X" and "y" in the inference part) and the inference would be ran on that dataset
 
 
 
